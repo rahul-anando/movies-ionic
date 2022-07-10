@@ -1,0 +1,46 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-icon size="large" name="film-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      Movies
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item *ngFor="let item of data">
+          <img
+            src="https://image.tmdb.org/t/p/w500/{{ item.poster_path }}"
+            width="100px"
+          />
+          <div class="text">
+            <h2>{{ item.original_title }}</h2>
+            <div *ngIf="item.vote_average > '7'">
+              <ion-text color="primary">Rating: {{item.vote_average}}</ion-text>
+            </div>
+            <div *ngIf="item.vote_average> '6' && '7' >=item.vote_average">
+               <ion-text color="success">Rating: {{item.vote_average}}</ion-text>
+            </div>
+            <div *ngIf="'6' >= item.vote_average">
+              <ion-text color="danger">Rating: {{item.vote_average}}</ion-text>
+            </div>
+            <i>Release: {{item.release_date | date: 'dd LLL yyyy'}}</i>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+
+
+
+
+
+
+
